@@ -16,7 +16,7 @@
                     @forelse ($posts as $post)
                         <li class="list-group-item">
                             {{ $post->title }}
-                            <a href="" class="float-right ml-2 btn btn-outline-secondary btn-sm">Edit</a>
+                            <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="float-right ml-2 btn btn-outline-secondary btn-sm">Edit</a>
                             <a href="" class="float-right ml-2 btn btn-outline-secondary btn-sm">View</a>
                             <div class="float-right text-secondary small pt-1">{{ date('m/d/Y', strtotime($post->created_at)) }}</div>
                         </li>
