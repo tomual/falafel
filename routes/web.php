@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\PostsController;
 
 /*
@@ -15,7 +16,7 @@ use App\Http\Controllers\PostsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('portfolio.layout');
 });
 
 Auth::routes();
@@ -28,3 +29,9 @@ Route::post('posts', [PostsController::class, 'store'])->name('posts.store');
 Route::get('posts/{post}/edit', [PostsController::class, 'edit'])->name('posts.edit');
 // Route::get('posts/{post}', [PostsController::class, 'show'])->name('posts.show');
 Route::put('posts/{post}', [PostsController::class, 'update'])->name('posts.update');
+
+Route::get('tags', [TagsController::class, 'index'])->name('tags.index');
+Route::get('tags/create', [TagsController::class, 'create'])->name('tags.create');
+Route::post('tags', [TagsController::class, 'store'])->name('tags.store');
+Route::get('tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit');
+Route::put('tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
