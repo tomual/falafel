@@ -42,13 +42,18 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="images" class="">Post</label>
-                            <input type="file" class="form-control-file @if ($errors->get('images.*')) is-invalid @endif" multiple name="images[]">
+                            <label for="images" class="">Images</label>
+                            <input type="file" class="form-control-file @error('images') is-invalid @enderror @if ($errors->get('images.*')) is-invalid @endif" multiple name="images[]">
                             @foreach ($errors->get('images.*') as $key => $value)
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $value[0] }}</strong>
                                 </span>
                             @endforeach
+                            @error('images')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         @foreach(json_decode($post->images) as $image)
@@ -59,6 +64,19 @@
                             </div>
                         @endforeach
 
+
+                        <div class="form-group">
+                            <label class="label">Tags</label>
+                            <select name="tags[]" multiple class="form-control @error('tags') is-invalid @enderror">
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}" @foreach($post->tags as $t) @if($tag->id == $t->id) selected="selected" @endif @endforeach>{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('tags')
+                            <p class="help is-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        
                         <div class="form-group mb-0">
                             <button type="submit" class="btn btn-primary">Update</button>
                             <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary">Cancel</a>

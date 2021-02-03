@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -29,7 +30,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all();
+        return view('posts.create', compact('tags'));
     }
 
     /**
@@ -44,7 +46,8 @@ class PostsController extends Controller
             'title' => ['required', 'min:3', 'max:255'],
             'body' => ['max:2500'],
             'images' => ['required'],
-            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
+            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'tags' => 'exists:tags,id'
         ]);
         $post = new Post($validated);
         $post->user_id = auth()->user()->id;
@@ -61,6 +64,7 @@ class PostsController extends Controller
 
         $post->images = json_encode($images);
         $post->save();
+        $post->tags()->attach(request('tags'));
 
         return redirect('posts');
     }
@@ -84,7 +88,8 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $tags = Tag::all();
+        return view('posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -99,7 +104,8 @@ class PostsController extends Controller
         $validated = request()->validate([
             'title' => ['required', 'min:3', 'max:255'],
             'body' => ['max:2500'],
-            'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
+            'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'tags' => 'exists:tags,id'
         ]);
         
         $post = Post::findOrFail($id);
@@ -127,6 +133,8 @@ class PostsController extends Controller
 
         $post->images = json_encode($images);
         $post->save();
+        $post->tags()->detach();
+        $post->tags()->attach(request('tags'));
 
         $request->session()->flash('success', 'Post successfully edited.');
         return redirect("posts/{$post->id}/edit");

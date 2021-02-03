@@ -12,13 +12,16 @@
                     </div>
                 @endif
 
+                @if ($errors->any())
+                    <?php var_dump($errors->getMessages()) ?>
+                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
                             <label for="title" class="">Title</label>
-                            <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+                            <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" autocomplete="title" autofocus>
                             @error('title')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -28,7 +31,7 @@
 
                         <div class="form-group">
                             <label for="body" class="">Post</label>
-                            <input id="body" type="body" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('body') }}" required autocomplete="body">
+                            <input id="body" type="body" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('body') }}" autocomplete="body">
                             @error('body')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -36,8 +39,13 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="images" class="">Post</label>
-                            <input type="file" class="form-control-file" multiple name="images[]">
+                            <label for="images" class="">Images</label>
+                            <input type="file" class="form-control-file @error('images') is-invalid @enderror @if ($errors->get('images.*')) is-invalid @endif" multiple name="images[]">
+                            @foreach ($errors->get('images.*') as $key => $value)
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $value[0] }}</strong>
+                                </span>
+                            @endforeach
                             @error('images')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -45,6 +53,18 @@
                             @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label class="label">Tags</label>
+                            <select name="tags[]" multiple class="form-control @error('tags') is-invalid @enderror">
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('tags')
+                            <p class="help is-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        
                         <div class="form-group mb-0">
                             <button type="submit" class="btn btn-primary">
                                 Post
