@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,17 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function front()
+    {
+        $tags = Tag::latest()->get();
+        return view('portfolio.layout', compact('tags'));
+    }
+
+    public function works(Tag $tag)
+    {
+        dd($tag);
+        return view('portfolio.index', compact('tag'));
     }
 }

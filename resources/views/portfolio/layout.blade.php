@@ -53,12 +53,10 @@ img.emoji {
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li id="menu-item-11" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11"><a href="http://soulant.coco.lat/category/concept-art/">Concept Art</a></li>
-<li id="menu-item-154" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-154"><a href="http://soulant.coco.lat/category/illustration/">Illustration</a></li>
-<li id="menu-item-12" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12"><a href="http://soulant.coco.lat/category/3d-modeling/">3D Modeling</a></li>
-<li id="menu-item-13" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-13"><a href="http://soulant.coco.lat/category/projects/">Projects</a></li>
-<li id="menu-item-258" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-258"><a href="http://soulant.coco.lat/category/unity-projects/">Unity Projects</a></li>
-<li id="menu-item-62" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62"><a href="http://soulant.coco.lat/contact/">Contact</a></li>
+                        @foreach ($tags as $tag)
+                        <li class="menu-item"><a href="{{ route('works', ['tag' => $tag->id])}}">{{ $tag->name }}</a></li>
+                        @endforeach
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62"><a href="http://soulant.coco.lat/contact/">Contact</a></li>
                     </ul>
                 </div>
             </div>

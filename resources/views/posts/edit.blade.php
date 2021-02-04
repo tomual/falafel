@@ -75,7 +75,7 @@
                             @error('tags')
                             <p class="help is-danger">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div>  
                         
                         <div class="form-group mb-0">
                             <button type="submit" class="btn btn-primary">Update</button>
