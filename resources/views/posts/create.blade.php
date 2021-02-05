@@ -54,6 +54,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="thumbnail" class="">Thumbnail</label>
+                            <input type="file" class="form-control-file @error('thumbnail') is-invalid @enderror" name="thumbnail">
+                            @error('thumbnail')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label class="label">Tags</label>
                             <select name="tags[]" multiple class="form-control @error('tags') is-invalid @enderror">
                                 @foreach ($tags as $tag)

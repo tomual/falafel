@@ -57,13 +57,23 @@
                         </div>
 
                         @foreach(json_decode($post->images) as $image)
-                                <img src="{{ url('uploads/' . $image) }}" class="form-thumb">
+                            <img src="{{ url('uploads/' . $image) }}" class="form-thumb">
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="remove-{{ $image }}" name="remove[]" value="{{ $image }}">
                                 <label class="form-check-label" for="remove-{{ $image }}">Remove</label>
                             </div>
                         @endforeach
 
+                        <div class="form-group">
+                            <label for="thumbnail" class="">Thumbnail</label>
+                            <input type="file" class="form-control-file @error('thumbnail') is-invalid @enderror" name="thumbnail">
+                            @error('thumbnail')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <img src="{{ url('uploads/' . $post->thumbnail) }}" class="form-thumb">
 
                         <div class="form-group">
                             <label class="label">Tags</label>

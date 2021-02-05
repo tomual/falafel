@@ -30,12 +30,12 @@ class HomeController extends Controller
     public function front()
     {
         $tags = Tag::latest()->get();
-        return view('portfolio.layout', compact('tags'));
+        return view('portfolio.home', compact('tags'));
     }
 
     public function works(Tag $tag)
     {
-        dd($tag);
-        return view('portfolio.index', compact('tag'));
+        $posts = $tag->posts;
+        return view('portfolio.index', compact('tag', 'posts'));
     }
 }

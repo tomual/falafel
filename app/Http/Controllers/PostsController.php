@@ -61,7 +61,10 @@ class PostsController extends Controller
             $request->session()->flash('error', 'There was an error uploading your images.');
             return redirect()->route('posts.create')->withInput();
         }
-
+        $file = $request->file('thumbnail');
+        $filename = uniqid() . "." . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads'), $filename);
+        $post->thumbnail = $filename;
         $post->images = json_encode($images);
         $post->save();
         $post->tags()->attach(request('tags'));
@@ -131,6 +134,10 @@ class PostsController extends Controller
             }
         }
 
+        $file = $request->file('thumbnail');
+        $filename = uniqid() . "." . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads'), $filename);
+        $post->thumbnail = $filename;
         $post->images = json_encode($images);
         $post->save();
         $post->tags()->detach();
