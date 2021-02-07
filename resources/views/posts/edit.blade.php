@@ -90,6 +90,11 @@
                         <div class="form-group mb-0">
                             <button type="submit" class="btn btn-primary">Update</button>
                             <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary">Cancel</a>
+                            <form method="POST" action="{{ route('posts.destroy', ['post' => $post->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-secondary float-right" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                            </form>
                         </div>
                     </form>
                 </div>
