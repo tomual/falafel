@@ -39,6 +39,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('tags.index') }}">Tags</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('settings.index') }}">Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/') }}" target="_blank">View Site</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

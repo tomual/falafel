@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,7 @@ Route::post('tags', [TagsController::class, 'store'])->name('tags.store');
 Route::get('tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit');
 Route::put('tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
 Route::delete('tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
+
+Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
+Route::get('settings/edit', [SettingsController::class, 'edit'])->name('settings.edit');
+Route::put('settings', [SettingsController::class, 'update'])->name('settings.update');
