@@ -74,7 +74,6 @@ class SettingsController extends Controller
         $validated = request()->validate([
             'site_name' => ['required', 'min:3', 'max:50'],
             'cover_image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10048'],
-            'email' => ['required', 'email'],
             'social_instagram' => ['nullable', 'url'],
             'social_artstation' => ['nullable', 'url'],
             'social_twitter' => ['nullable', 'url'],

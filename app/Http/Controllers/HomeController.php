@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tag;
+use App\Models\Settings;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -30,12 +31,15 @@ class HomeController extends Controller
     public function front()
     {
         $tags = Tag::latest()->get();
-        return view('portfolio.home', compact('tags'));
+        $settings = Settings::find(1);
+        return view('portfolio.home', compact('tags', 'settings'));
     }
 
     public function works(Tag $tag)
     {
         $posts = $tag->posts;
-        return view('portfolio.index', compact('tag', 'posts'));
+        $tags = Tag::latest()->get();
+        $settings = Settings::find(1);
+        return view('portfolio.index', compact('tag', 'tags', 'posts', 'settings'));
     }
 }

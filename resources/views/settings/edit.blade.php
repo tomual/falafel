@@ -33,16 +33,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="">Contact Email (hidden on site)</label>
-                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $settings->email }}" required autocomplete="email" autofocus>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label for="cover_image" class="">Home Page Image</label>
                             <input type="file" class="form-control-file @error('cover_image') is-invalid @enderror" name="cover_image">
                             @error('cover_image')

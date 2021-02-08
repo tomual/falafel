@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css?family=Hind|Reenie+Beanie&display=swap');
+
+
+body {
+    background: #222222;
+    font-family: 'Hind', sans-serif;
+    color: #999;
+}
+
+.home {
+    background-image: url(home.webp);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-position: right;
+    background-size: cover;
+    z-index: -1;
+}
+
+nav {
+    background: #22222280;
+}
+
+.navbar-brand {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 36px;
+}
+
+footer.home-footer {
+    position: absolute;
+    bottom: 0;
+}
+
+footer {
+    background: #222222;
+    width: 100%;
+    padding: 2rem 3rem;
+}
+
+footer a img {
+    filter: invert(50%);
+    transition: all 0.3s;
+}
+
+footer a:hover img {
+    filter: invert(100%);
+}
+
+footer i.fab {
+    margin-right: 1rem;
+    font-size: 20px;
+    color: #ffffff57;
+    color: #6c757d!important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+    letter-spacing: 0.5px;
+    margin-left: 1rem;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+}
+
+.art img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)
+}
+
+main h1 {
+    color: #CCC;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+hr.divider {
+    width: 100px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    border: 0;
+    margin-bottom: 5rem;
+    margin-top: 0;
+}
+
+hr.divider::after {
+    border-bottom: 3px solid #00b6f0;
+    content: " ";
+    width: 69px;
+    display: block;
+    margin: auto;
+}
+
+.thumb-heading {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    background: #00000080;
+    width: 100%;
+    margin: 0;
+    padding: 15px 20px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #FFF;
+}
+
+.thumb-info {
+    position: relative;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.thumb:hover .thumb-info {
+    opacity: 1;
+}
+
+p {
+    color: #999;
+}
+
+.menu-item a {
+    color: rgba(255,255,255,.5);
+    letter-spacing: 0.5px;
+    margin-left: 1rem;
+        display: block;
+        padding: .5rem 1rem;
+}
+
+.menu-item a:focus, .menu-item a:hover {
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+}
+
+.menu-item a {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+@media (min-width: 992px) {
+    .menu-item a {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+}
+
+.wpcf7-form {
+    text-align: center;
+    margin: auto;
+}
+
+.wpcf7-form-control {
+    width: 400px !important;
+    padding: 12px 18px;
+    display: block;
+    border: 2px solid #777;
+    color: #cccccc;
+    background: #292929;
+    margin: auto;
+    margin-top: 6px;
+}
+
+.wpcf7-form label {
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #777777;
+}
+
+.wpcf7-submit {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+div.wpcf7-response-output {
+    margin: auto;
+    width: 400px;
+    border: 2px solid #ff0000;
+    background: #dc354517;
+    padding: 12px 24px;
+}
+div.wpcf7-validation-errors, div.wpcf7-acceptance-missing {
+    border: 2px solid #dc3545;
+}
+
+span.wpcf7-not-valid-tip {
+    margin-top: 6px;
+}
+
+.wpcf7-not-valid {
+    border: 2px solid #dc3545;
+}
+
+div.wpcf7-mail-sent-ok {
+    border: 2px solid #559830;
+    background: #5598303b;
+}

@@ -1,7 +1,7 @@
 @extends('portfolio.layout')
 
 @section('content')
-<h1 class="page-title text-center w-100">Concept Art</h1>
+<h1 class="page-title text-center w-100">{{ $tag->name }}</h1>
 <hr class="divider">
 
 @foreach ($posts as $post)

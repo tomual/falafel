@@ -134,10 +134,12 @@ class PostsController extends Controller
             }
         }
 
-        $file = $request->file('thumbnail');
-        $filename = uniqid() . "." . $file->getClientOriginalExtension();
-        $file->move(public_path('uploads'), $filename);
-        $post->thumbnail = $filename;
+        if ($request->file('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $filename = uniqid() . "." . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $filename);
+            $post->thumbnail = $filename;
+        }
         $post->images = json_encode($images);
         $post->save();
         $post->tags()->detach();
