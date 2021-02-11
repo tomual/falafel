@@ -34,7 +34,7 @@
 
                         <div class="form-group">
                             <label for="body" class="">Post</label>
-                            <input id="body" type="body" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('body') ?? $post->body }}" required autocomplete="body">
+                            <textarea rows="4" class="form-control @error('body') is-invalid @enderror" name="body">{{ old('body') ?? $post->body }}</textarea>
                             @error('body')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -77,7 +77,7 @@
 
                         <div class="form-group">
                             <label class="label">Tags</label>
-                            <select name="tags[]" multiple class="form-control @error('tags') is-invalid @enderror">
+                            <select name="tags" class="form-control @error('tags') is-invalid @enderror">
                                 @foreach ($tags as $tag)
                                     <option value="{{ $tag->id }}" @foreach($post->tags as $t) @if($tag->id == $t->id) selected="selected" @endif @endforeach>{{ $tag->name }}</option>
                                 @endforeach

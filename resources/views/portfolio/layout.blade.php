@@ -8,7 +8,9 @@
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <title>{{ $tag->name }} &#8211; {{ $settings->site_name }}</title>
+    <title>
+        @yield('title')
+        {{ $settings->site_name }}</title>
     <link href="{{ asset('css/artstation.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 </head>

@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'front'])->name('front');
 Route::get('/works/{tag}', [App\Http\Controllers\HomeController::class, 'works'])->name('works');
-Route::get('/work/{post}', [App\Http\Controllers\HomeController::class, 'work'])->name('work');
+Route::get('/works/view/{post}', [App\Http\Controllers\HomeController::class, 'show'])->name('work');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('posts', [PostsController::class, 'index'])->name('posts.index');

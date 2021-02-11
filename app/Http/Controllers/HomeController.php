@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use App\Models\Post;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 
@@ -41,5 +42,13 @@ class HomeController extends Controller
         $tags = Tag::latest()->get();
         $settings = Settings::find(1);
         return view('portfolio.index', compact('tag', 'tags', 'posts', 'settings'));
+    }
+
+    public function show(Post $post)
+    {
+        $tags = Tag::latest()->get();
+        $tag = $post->tags->first();
+        $settings = Settings::find(1);
+        return view('portfolio.show', compact('tags', 'tag', 'post', 'settings'));
     }
 }

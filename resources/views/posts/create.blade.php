@@ -12,9 +12,6 @@
                     </div>
                 @endif
 
-                @if ($errors->any())
-                    <?php var_dump($errors->getMessages()) ?>
-                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
@@ -31,7 +28,7 @@
 
                         <div class="form-group">
                             <label for="body" class="">Post</label>
-                            <input id="body" type="body" class="form-control @error('body') is-invalid @enderror" name="body" value="{{ old('body') }}" autocomplete="body">
+                            <textarea rows="4" class="form-control @error('body') is-invalid @enderror" name="body">{{ old('body') }}</textarea>
                             @error('body')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -65,7 +62,7 @@
 
                         <div class="form-group">
                             <label class="label">Tags</label>
-                            <select name="tags[]" multiple class="form-control @error('tags') is-invalid @enderror">
+                            <select name="tags" class="form-control @error('tags') is-invalid @enderror">
                                 @foreach ($tags as $tag)
                                     <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                 @endforeach

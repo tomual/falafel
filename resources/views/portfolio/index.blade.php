@@ -1,5 +1,9 @@
 @extends('portfolio.layout')
 
+@section('title')
+{{ $tag->name }} &#8211; 
+@endsection
+
 @section('content')
 <h1 class="page-title text-center w-100">{{ $tag->name }}</h1>
 <hr class="divider">

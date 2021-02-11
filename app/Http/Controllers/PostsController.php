@@ -46,7 +46,7 @@ class PostsController extends Controller
             'title' => ['required', 'min:3', 'max:255'],
             'body' => ['max:2500'],
             'images' => ['required'],
-            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10048'],
             'tags' => 'exists:tags,id'
         ]);
         $post = new Post($validated);
@@ -107,7 +107,7 @@ class PostsController extends Controller
         $validated = request()->validate([
             'title' => ['required', 'min:3', 'max:255'],
             'body' => ['max:2500'],
-            'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10048'],
             'tags' => 'exists:tags,id'
         ]);
         
@@ -141,6 +141,8 @@ class PostsController extends Controller
             $post->thumbnail = $filename;
         }
         $post->images = json_encode($images);
+        $post->title = request('title');
+        $post->body = request('body');
         $post->save();
         $post->tags()->detach();
         $post->tags()->attach(request('tags'));
